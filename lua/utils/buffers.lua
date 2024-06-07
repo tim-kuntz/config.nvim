@@ -83,6 +83,41 @@ M.only_buffer = function()
   end
 end
 
+-- extract the relative paths from the harpoon list
+-- assumes the harpoon list contains relative filenames (the default)
+local harpoon_extract_paths = function()
+  local paths = {}
+  local items = require('harpoon'):list().items
+  for k, v in ipairs(items) do
+    paths[k] = v.value
+  end
+  return paths
+end
+
+-- return true if str ends with ending; else false
+local ends_with = function(str, ending)
+    return ending == "" or str:sub(-#ending) == ending
+end
+
+-- close any listed buffer whose path is not in
+-- the harpoon list
+M.harpoon_only = function()
+  local paths = harpoon_extract_paths()
+  local buffers = get_listed_buffers(vim.fn.getbufinfo())
+  for _, buffer in ipairs(buffers) do
+    local found = false
+    for _, path in ipairs(paths) do
+      if ends_with(buffer.name, path) then
+        found = true
+        break
+      end
+    end
+    if not found then
+      vim.cmd('bd' .. ' ' .. buffer.bufnr)
+    end
+  end
+end
+
 return M
 
 

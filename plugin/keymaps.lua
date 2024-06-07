@@ -92,6 +92,8 @@ keymap("n", "<S-TAB>", buffers.goto_previous_buffer, defaults)
 keymap("n", "<leader>bd", "<Cmd>bd<CR>", {desc = "Delete current" })
 -- close all other buffers
 keymap("n", "<leader>bo", buffers.only_buffer, { desc = "Delete others" })
+-- close all but harpoon listed items
+keymap("n", "<leader>bh", buffers.harpoon_only, { desc = "Keep harpoon only" })
 
 -- source the current file
 keymap("n", "<leader>x", ":source %<CR>")
