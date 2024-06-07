@@ -69,7 +69,7 @@ keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], defs({
 
 -- additional telescope mappings
 -- see init.lua for mappings setup as part of kickstarter
--- keymap("n", "<leader>sb", require("telescope.builtin").buffers, { desc = "[S]earch [B]uffers" })
+-- keymap("n", "<leader>sb", require("telescope.builtin").buffers, { desc = "[b]uffers" })
 
 -- Rails.vim Alt file
 keymap("n", "mA", ":A<CR>", defaults)

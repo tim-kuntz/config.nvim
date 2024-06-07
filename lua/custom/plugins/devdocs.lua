@@ -7,6 +7,6 @@ return {
   },
   opts = {},
   keys = {
-    { "<leader>sD", "<cmd>DevdocsOpen<cr>", desc = "[S]earch [D]evdocs" },
+    { "<leader>sD", "<cmd>DevdocsOpen<cr>", desc = "[D]evdocs" },
   },
 }

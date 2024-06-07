@@ -96,20 +96,24 @@ return {
       -- pcall(require("telescope").load_extension, "fzf")
 
       -- See `:help telescope.builtin`
-      vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
+      vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[f]iles" })
+      vim.keymap.set("n", "<leader>sv", function()
+        require("telescope.builtin").find_files({cwd = vim.fn.stdpath('config')})
+      end, { desc = "[v]im" })
+
       -- requires the executable 'rg'; brew install rg
-      vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
+      vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "by [g]rep" })
       vim.keymap.set("n", "<leader>sG", function()
         require("telescope.builtin").live_grep({ glob_pattern = "!*test.rb", glob_pattern = "!**/test/**" })
-      end, { desc = "[S]earch by [G]rep with filters" })
+      end, { desc = "by [G]rep with filters" })
       vim.keymap.set(
         "n",
         "<leader>sw",
         require("telescope.builtin").grep_string,
-        { desc = "[S]earch current [W]ord" }
+        { desc = "current [w]ord" }
       )
-      vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
-      vim.keymap.set("n", "<leader>so", "<cmd>Telescope aerial<cr>", { desc = "Code Outline" })
+      vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[r]esume" })
+      vim.keymap.set("n", "<leader>so", "<cmd>Telescope aerial<cr>", { desc = "code [o]utline" })
       vim.keymap.set(
         "n",
         "<leader><space>",
@@ -123,17 +127,17 @@ return {
         { desc = "[?] Find recently opened files" }
       )
 
-      vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
+      vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[h]elp" })
       vim.keymap.set(
         "n",
         "<leader>sd",
         require("telescope.builtin").diagnostics,
-        { desc = "[S]earch [D]iagnostics" }
+        { desc = "[d]iagnostics" }
       )
-      vim.keymap.set("n", "<leader>st", require("telescope.builtin").tags, { desc = "[S]earch [T]ags" })
+      vim.keymap.set("n", "<leader>st", require("telescope.builtin").tags, { desc = "[t]ags" })
       vim.keymap.set("n", "<leader>sc", function()
         require("telescope.builtin").colorscheme({ enable_preview = true })
-      end, { desc = "Colorscheme" })
+      end, { desc = "[c]olorscheme" })
 
       vim.keymap.set("n", "<leader>/", function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -143,11 +147,7 @@ return {
         }))
       end, { desc = "[/] Fuzzily search in current buffer" })
 
-      vim.keymap.set("n", "<leader>sp", "<cmd>Telescope workspaces<cr>", { desc = "[S]earch [P]roject" })
-
-      -- vim.keymap.set("n", "<leader>sn", "<cmd>Telescope notify<cr>", { desc = "[S]earch [N]otifications" })
-
-
+      -- vim.keymap.set("n", "<leader>sn", "<cmd>Telescope notify<cr>", { desc = "[N]otifications" })
 
       local telescope = require("telescope")
       telescope.load_extension "fzf"
